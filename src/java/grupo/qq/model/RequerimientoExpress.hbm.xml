@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-19-2018 05:50:17 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="grupo.qq.model.RequerimientoExpress" table="requerimiento_express" catalog="proyectoqq" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="automovil" class="grupo.qq.model.Automovil" fetch="select">
+            <column name="automovil_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="mecanico" class="grupo.qq.model.Mecanico" fetch="select">
+            <column name="mecanico_id" not-null="true" />
+        </many-to-one>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="150" />
+        </property>
+        <property name="fechaIni" type="date">
+            <column name="fecha_ini" length="10" />
+        </property>
+        <property name="fechaFin" type="date">
+            <column name="fecha_fin" length="10" />
+        </property>
+        <property name="totalExpress" type="java.lang.Double">
+            <column name="total_express" precision="22" scale="0" />
+        </property>
+        <property name="idMecanico" type="java.lang.Integer">
+            <column name="id_mecanico" />
+        </property>
+        <property name="idAutomovil" type="java.lang.Integer">
+            <column name="id_automovil" />
+        </property>
+        <set name="bitacoras" table="bitacora" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="taller_express_id" not-null="true" />
+            </key>
+            <one-to-many class="grupo.qq.model.Bitacora" />
+        </set>
+        <set name="solucions" table="solucion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="taller_express_id" not-null="true" />
+            </key>
+            <one-to-many class="grupo.qq.model.Solucion" />
+        </set>
+        <set name="piezases" table="piezas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="taller_express_id" not-null="true" />
+            </key>
+            <one-to-many class="grupo.qq.model.Piezas" />
+        </set>
+        <set name="filtros" table="filtro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="taller_express_id" not-null="true" />
+            </key>
+            <one-to-many class="grupo.qq.model.Filtro" />
+        </set>
+        <set name="aceiteses" table="aceites" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="taller_express_id" not-null="true" />
+            </key>
+            <one-to-many class="grupo.qq.model.Aceites" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-19-2018 05:50:17 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="grupo.qq.model.Pintura" table="pintura" catalog="proyectoqq" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="requerimientoEnderezadoPintura" class="grupo.qq.model.RequerimientoEnderezadoPintura" fetch="select">
+            <column name="pintura_enderezado_id" not-null="true" />
+        </many-to-one>
+        <property name="typeColor" type="string">
+            <column name="type_color" length="50" />
+        </property>
+        <property name="idPinturaenderezado" type="java.lang.Integer">
+            <column name="id_pinturaenderezado" />
+        </property>
+        <property name="montoColor" type="java.lang.Double">
+            <column name="monto_color" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

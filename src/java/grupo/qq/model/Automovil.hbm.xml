@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-19-2018 05:50:17 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="grupo.qq.model.Automovil" table="automovil" catalog="proyectoqq" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="client" class="grupo.qq.model.Client" fetch="select">
+            <column name="client_id" not-null="true" />
+        </many-to-one>
+        <property name="placa" type="string">
+            <column name="placa" length="8" />
+        </property>
+        <property name="color" type="string">
+            <column name="color" length="30" />
+        </property>
+        <property name="modelo" type="string">
+            <column name="modelo" length="40" />
+        </property>
+        <property name="annio" type="date">
+            <column name="annio" length="10" />
+        </property>
+        <property name="typeVehiculo" type="string">
+            <column name="type_vehiculo" length="11" />
+        </property>
+        <property name="idClient" type="java.lang.Integer">
+            <column name="id_client" />
+        </property>
+        <set name="requerimientoGenerals" table="requerimiento_general" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="automovil_id" not-null="true" />
+            </key>
+            <one-to-many class="grupo.qq.model.RequerimientoGeneral" />
+        </set>
+        <set name="requerimientoEnderezadoPinturas" table="requerimiento_enderezado_pintura" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="automovil_id" not-null="true" />
+            </key>
+            <one-to-many class="grupo.qq.model.RequerimientoEnderezadoPintura" />
+        </set>
+        <set name="requerimientoExpresses" table="requerimiento_express" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="automovil_id" not-null="true" />
+            </key>
+            <one-to-many class="grupo.qq.model.RequerimientoExpress" />
+        </set>
+        <set name="fotoses" table="fotos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="automovil_id" not-null="true" />
+            </key>
+            <one-to-many class="grupo.qq.model.Fotos" />
+        </set>
+    </class>
+</hibernate-mapping>

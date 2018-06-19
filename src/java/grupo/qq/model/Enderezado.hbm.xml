@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-19-2018 05:50:17 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="grupo.qq.model.Enderezado" table="enderezado" catalog="proyectoqq" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="requerimientoEnderezadoPintura" class="grupo.qq.model.RequerimientoEnderezadoPintura" fetch="select">
+            <column name="pintura_enderezado_id" not-null="true" />
+        </many-to-one>
+        <property name="partes" type="string">
+            <column name="partes" length="17" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="150" />
+        </property>
+        <property name="montoEnderezado" type="java.lang.Double">
+            <column name="monto_enderezado" precision="22" scale="0" />
+        </property>
+        <property name="idPinturaenderezado" type="java.lang.Integer">
+            <column name="id_pinturaenderezado" />
+        </property>
+    </class>
+</hibernate-mapping>

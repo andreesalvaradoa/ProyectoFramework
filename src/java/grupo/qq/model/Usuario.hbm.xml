@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-19-2018 05:50:17 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="grupo.qq.model.Usuario" table="usuario" catalog="proyectoqq" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="client" class="grupo.qq.model.Client" fetch="select">
+            <column name="client_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="mecanico" class="grupo.qq.model.Mecanico" fetch="select">
+            <column name="mecanico_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="rol" class="grupo.qq.model.Rol" fetch="select">
+            <column name="rol_id" not-null="true" />
+        </many-to-one>
+        <property name="usuario" type="string">
+            <column name="usuario" length="8" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="64" />
+        </property>
+        <property name="idRol" type="java.lang.Integer">
+            <column name="id_rol" />
+        </property>
+        <property name="idEmployee" type="java.lang.Integer">
+            <column name="id_employee" />
+        </property>
+        <property name="idClient" type="java.lang.Integer">
+            <column name="id_client" />
+        </property>
+        <set name="recuperarPasses" table="recuperar_pass" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuario_id" not-null="true" />
+            </key>
+            <one-to-many class="grupo.qq.model.RecuperarPass" />
+        </set>
+    </class>
+</hibernate-mapping>

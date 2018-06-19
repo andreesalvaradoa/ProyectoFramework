@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-19-2018 05:50:17 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="grupo.qq.model.Autorizacion" table="autorizacion" catalog="proyectoqq" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="bitacora" class="grupo.qq.model.Bitacora" fetch="select">
+            <column name="bitacora_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="client" class="grupo.qq.model.Client" fetch="select">
+            <column name="client_id" not-null="true" />
+        </many-to-one>
+        <property name="fechaAuto" type="date">
+            <column name="fecha_auto" length="10" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="11" />
+        </property>
+        <property name="idClient" type="java.lang.Integer">
+            <column name="id_client" />
+        </property>
+    </class>
+</hibernate-mapping>

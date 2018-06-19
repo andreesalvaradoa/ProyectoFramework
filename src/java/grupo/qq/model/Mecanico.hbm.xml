@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-19-2018 05:50:17 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="grupo.qq.model.Mecanico" table="mecanico" catalog="proyectoqq" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="60" />
+        </property>
+        <property name="direction" type="string">
+            <column name="direction" length="100" />
+        </property>
+        <property name="phoneNumber" type="string">
+            <column name="phone_number" length="9" />
+        </property>
+        <property name="estatus" type="string">
+            <column name="estatus" length="8" />
+        </property>
+        <property name="edad" type="java.lang.Integer">
+            <column name="edad" />
+        </property>
+        <property name="fechaNac" type="date">
+            <column name="fecha_nac" length="10" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="100" />
+        </property>
+        <set name="requerimientoEnderezadoPinturas" table="requerimiento_enderezado_pintura" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="mecanico_id" not-null="true" />
+            </key>
+            <one-to-many class="grupo.qq.model.RequerimientoEnderezadoPintura" />
+        </set>
+        <set name="requerimientoExpresses" table="requerimiento_express" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="mecanico_id" not-null="true" />
+            </key>
+            <one-to-many class="grupo.qq.model.RequerimientoExpress" />
+        </set>
+        <set name="requerimientoGenerals" table="requerimiento_general" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="mecanico_id" not-null="true" />
+            </key>
+            <one-to-many class="grupo.qq.model.RequerimientoGeneral" />
+        </set>
+        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="mecanico_id" not-null="true" />
+            </key>
+            <one-to-many class="grupo.qq.model.Usuario" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-19-2018 05:50:17 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="grupo.qq.model.Bitacora" table="bitacora" catalog="proyectoqq" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="requerimientoEnderezadoPintura" class="grupo.qq.model.RequerimientoEnderezadoPintura" fetch="select">
+            <column name="pintura_enderezado_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="requerimientoExpress" class="grupo.qq.model.RequerimientoExpress" fetch="select">
+            <column name="taller_express_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="requerimientoGeneral" class="grupo.qq.model.RequerimientoGeneral" fetch="select">
+            <column name="taller_general_id" not-null="true" />
+        </many-to-one>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="150" />
+        </property>
+        <property name="fecha" type="date">
+            <column name="fecha" length="10" />
+        </property>
+        <property name="idTallerExpress" type="java.lang.Integer">
+            <column name="id_taller_express" />
+        </property>
+        <property name="idTallerGeneral" type="java.lang.Integer">
+            <column name="id_taller_general" />
+        </property>
+        <property name="idPinturaenderezado" type="java.lang.Integer">
+            <column name="id_pinturaenderezado" />
+        </property>
+        <property name="idAutorizacion" type="java.lang.Integer">
+            <column name="id_autorizacion" />
+        </property>
+        <set name="fotoses" table="fotos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="bitacora_id" not-null="true" />
+            </key>
+            <one-to-many class="grupo.qq.model.Fotos" />
+        </set>
+        <set name="autorizacions" table="autorizacion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="bitacora_id" not-null="true" />
+            </key>
+            <one-to-many class="grupo.qq.model.Autorizacion" />
+        </set>
+    </class>
+</hibernate-mapping>
